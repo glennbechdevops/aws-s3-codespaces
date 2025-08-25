@@ -69,10 +69,9 @@ Opprett en fil `bucket-policy.json`:
 }
 ```
 
-Erstatt `BUCKET_NAME` med ditt faktiske bucket-navn og apply policy:
+NB! Erstatt `BUCKET_NAME` med ditt faktiske bucket-navn 
+
 ```bash
-# Erstatt BUCKET_NAME i policy filen
-sed -i "s/BUCKET_NAME/$BUCKET_NAME/g" bucket-policy.json
 
 # Fjern block public access (nødvendig for offentlig website)
 aws s3api put-public-access-block \
@@ -188,68 +187,8 @@ echo "http://$BUCKET_NAME.s3-website-eu-north-1.amazonaws.com"
 aws s3 sync website/ s3://$BUCKET_NAME/ --delete
 ```
 
-### Overvåk filer i bucketen
-```bash
-aws s3 ls s3://$BUCKET_NAME/ --recursive
-```
-
-## Bonusoppgaver
-
 ### 1. Legg til JavaScript interaktivitet
-Lag en `website/script.js` fil og legg til interaktiv funksjonalitet.
-
-### 2. Automatiser deployment med et bash script
-Lag et script `deploy.sh` som automatiserer hele prosessen:
-```bash
-#!/bin/bash
-BUCKET_NAME=${1:-"mitt-nettsted-$(date +%s)"}
-
-echo "Deploying to bucket: $BUCKET_NAME"
-
-# Sjekk om bucket eksisterer
-if aws s3 ls "s3://$BUCKET_NAME" 2>&1 | grep -q 'NoSuchBucket'
-then
-    echo "Creating bucket..."
-    aws s3 mb s3://$BUCKET_NAME --region eu-north-1
-    
-    # Konfigurer bucket
-    # ... (legg til policy og website config her)
-fi
-
-# Sync filer
-aws s3 sync website/ s3://$BUCKET_NAME/ --delete
-
-echo "Deploy complete!"
-echo "URL: http://$BUCKET_NAME.s3-website-eu-north-1.amazonaws.com"
-```
-
-### 3. Legg til CloudFront CDN
-Konfigurer CloudFront distribusjon foran S3 bucketen for bedre ytelse.
-
-## Opprydding
-Når du er ferdig med øvelsen, slett bucketen for å unngå kostnader:
-```bash
-# Tøm bucketen først
-aws s3 rm s3://$BUCKET_NAME --recursive
-
-# Slett bucketen
-aws s3 rb s3://$BUCKET_NAME
-```
-
-## Feilsøking
-
-### Problem: Access Denied ved upload
-- Sjekk at IAM brukeren har riktige S3 permissions
-- Verifiser at bucket policy er korrekt konfigurert
-
-### Problem: Nettside vises ikke
-- Sjekk at website hosting er aktivert
-- Verifiser at index.html finnes i bucket root
-- Sjekk at public access ikke er blokkert
-
-### Problem: CSS/JS lastes ikke
-- Sjekk at filstier i HTML er relative
-- Verifiser at alle filer er synkronisert til S3
+Lag en `website/script.js` fil og legg til interaktiv funksjonalitet. Kan du lage et enkelt react prosjekt?
 
 ## Ressurser
 - [AWS S3 Documentation](https://docs.aws.amazon.com/s3/)

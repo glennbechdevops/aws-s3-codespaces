@@ -7,9 +7,14 @@ I denne øvelsen skal du lære å:
 - Konfigurere bucket for static website hosting
 - Deploye statiske filer til S3
 
+I denne oppgaven skal vi også lære å bruke AWS CLI (aws kommandolinje) og bli kjent med terminalen. Det er fint om du prøver å forstå hva hver enkelt kommando gjør, men det aller viktigste er:
+
+* At du får tilgang til klassens AWS-miljø
+* At du får tilgang til AWS fra terminalen i Codespaces
+
 ## Forutsetninger
 - GitHub konto med Codespaces tilgang
-- AWS konto med IAM bruker og access keys
+- AWS konto med IAM bruker og access keys, følg veiledning her ; https://github.com/glennbechdevops/aws-iam-accesskeys
 
 ## Del 1: Konfigurer AWS CLI i Codespaces
 

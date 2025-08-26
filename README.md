@@ -52,6 +52,8 @@ Du vil bli bedt om å oppgi:
 
 ### Steg 1: Opprett en S3 bucket
 Velg et unikt bucket-navn (må være globalt unikt):
+Du kan *for eksempel* gjøre det slik, men velg gjerne et kreativt navn på din bucket. 
+
 ```bash
 BUCKET_NAME="mitt-nettsted-$(date +%s)"
 aws s3 mb s3://$BUCKET_NAME --region eu-north-1

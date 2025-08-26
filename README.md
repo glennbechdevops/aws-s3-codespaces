@@ -31,6 +31,9 @@ sudo ./aws/install
 ```
 
 ### Steg 3: Konfigurer AWS credentials
+
+Følg veiledningen her https://github.com/glennbechdevops/aws-iam-accesskeys for å lage de nødvendige tilgangsnøklene 
+
 ```bash
 aws configure
 ```

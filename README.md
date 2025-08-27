@@ -53,10 +53,9 @@ Du vil bli bedt om å oppgi:
 
 #### Alterativ 2
 
-AWS credentials kan konfigureres på respository-nivå under Settings/Secrets/Codespaces 
+AWS credentials kan konfigureres på respository-nivå under Settings/Secrets/Codespaces.
 
-<img width="1370" height="785" alt="image" src="https://github.com/user-attachments/assets/297abf54-2f7a-4449-a215-cc3de3c47371" />
-
+<img width="1326" height="593" alt="image" src="https://github.com/user-attachments/assets/c2f62694-d70d-4844-9420-80a2939635a4" />
 
 
 ## Del 2: Opprett og konfigurer S3 Bucket

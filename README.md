@@ -36,6 +36,9 @@ sudo ./aws/install
 ```
 
 ### Steg 3: Konfigurer AWS credentials
+
+#### Alternativ 1
+
 ```bash
 aws configure
 ```
@@ -47,6 +50,14 @@ Du vil bli bedt om å oppgi:
 - Default output format (trykk Enter for default)
 
 **Sikkerhetstips:** Aldri commit AWS credentials til Git!
+
+#### Alterativ 2
+
+AWS credentials kan konfigureres på respository-nivå under Settings/Secrets/Codespaces 
+
+<img width="1370" height="785" alt="image" src="https://github.com/user-attachments/assets/297abf54-2f7a-4449-a215-cc3de3c47371" />
+
+
 
 ## Del 2: Opprett og konfigurer S3 Bucket
 

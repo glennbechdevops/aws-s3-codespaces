@@ -65,7 +65,7 @@ Velg et unikt bucket-navn (må være globalt unikt):
 Du kan *for eksempel* gjøre det slik, men velg gjerne et kreativt navn på din bucket. 
 
 ```bash
-BUCKET_NAME="mitt-nettsted-$(date +%s)"
+BUCKET_NAME="<finn på et unikt navn, små bokstever ikke underscore>"
 aws s3 mb s3://$BUCKET_NAME --region eu-north-1
 ```
 
@@ -86,10 +86,9 @@ Opprett en fil `bucket-policy.json`:
 }
 ```
 
-Erstatt `BUCKET_NAME` med ditt faktiske bucket-navn og apply policy:
+Erstatt `BUCKET_NAME` med ditt faktiske bucket-navn og apply bucket-policy.sjon
+
 ```bash
-# Erstatt BUCKET_NAME i policy filen
-sed -i "s/BUCKET_NAME/$BUCKET_NAME/g" bucket-policy.json
 
 # Fjern block public access (nødvendig for offentlig website)
 aws s3api put-public-access-block \

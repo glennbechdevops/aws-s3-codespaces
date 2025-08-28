@@ -70,7 +70,9 @@ aws s3 mb s3://$BUCKET_NAME --region eu-north-1
 ```
 
 ### Steg 2: Konfigurer bucket policy for offentlig tilgang
-Opprett en fil `bucket-policy.json`:
+
+Opprett en fil `bucket-policy.json`, og Erstatt `BUCKET_NAME` med ditt bucket navn, 
+
 ```json
 {
     "Version": "2012-10-17",
@@ -86,7 +88,6 @@ Opprett en fil `bucket-policy.json`:
 }
 ```
 
-Erstatt `BUCKET_NAME` med ditt faktiske bucket-navn og apply bucket-policy.sjon
 
 ```bash
 

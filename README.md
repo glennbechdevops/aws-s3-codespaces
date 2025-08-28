@@ -90,9 +90,9 @@ Opprett en fil `bucket-policy.json`, og Erstatt `BUCKET_NAME` med ditt bucket na
 
 Kjør følgende kommandoer i terminalen
 
-```bash
+* Fjerner  "block public access" (nødvendig for offentlig website)
 
-# Fjern block public access (nødvendig for offentlig website)
+```bash
 aws s3api put-public-access-block \
     --bucket $BUCKET_NAME \
     --public-access-block-configuration "BlockPublicAcls=false,IgnorePublicAcls=false,BlockPublicPolicy=false,RestrictPublicBuckets=false"

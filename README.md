@@ -88,6 +88,7 @@ Opprett en fil `bucket-policy.json`, og Erstatt `BUCKET_NAME` med ditt bucket na
 }
 ```
 
+Kjør følgende kommandoer i terminalen
 
 ```bash
 
@@ -95,7 +96,9 @@ Opprett en fil `bucket-policy.json`, og Erstatt `BUCKET_NAME` med ditt bucket na
 aws s3api put-public-access-block \
     --bucket $BUCKET_NAME \
     --public-access-block-configuration "BlockPublicAcls=false,IgnorePublicAcls=false,BlockPublicPolicy=false,RestrictPublicBuckets=false"
+```
 
+```
 # Apply bucket policy
 aws s3api put-bucket-policy --bucket $BUCKET_NAME --policy file://bucket-policy.json
 ```

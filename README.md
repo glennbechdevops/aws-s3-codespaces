@@ -197,6 +197,37 @@ aws s3 rb s3://$BUCKET_NAME
 - Sjekk at filstier i HTML er relative
 - Verifiser at alle filer er synkronisert til S3
 
+# Viktige termer – AWS S3 Static Website Hosting (Laget av AI)
+
+## Grunnleggende
+- **AWS CLI**: Kommandolinje-verktøy for å kjøre AWS-kommandoer. Brukes her til å opprette bucket, sette policy og laste opp filer.  
+- **GitHub Codespaces**: Sky-devmiljø i nettleseren. Du kjører alle AWS-kommandoer herfra.  
+
+## Identitet & tilgang
+- **IAM-bruker**: Brukerkonto i AWS med rettigheter. Trenger nøkler for programmatisk tilgang.  
+- **Access keys (Access Key ID / Secret Access Key)**: Nøkkelpar for IAM-bruker som lar CLI autentisere seg. Må aldri committes til Git.  
+- **`aws configure`**: Kommando som lagrer access keys, region og output-format lokalt i Codespaces.  
+
+## S3-begreper
+- **S3 bucket**: “Mappe” på toppnivå i S3 (globalt unikt navn). Lagrer nettsidefilene dine.  
+- **Region**: Geografisk område (f.eks. `eu-north-1`). Påvirker endepunkt/URL og latency.  
+- **Static website hosting**: Egenskap på en bucket som lar S3 serve filer over HTTP som en enkel nettside.  
+- **Index document / Error document**: Standardfiler S3 server når en mappe/404 treffes (typisk `index.html` / `error.html`).  
+
+## Offentlig tilgang
+- **Block Public Access (BPA)**: Sikkerhetsinnstilling som blokkerer at en bucket/objekter kan bli offentlige. Må delvis skrus av for å hoste offentlig nettsted.  
+- **Bucket policy**: JSON-policy som definerer *hvem* som kan gjøre *hva* på *hvilke* ressurser. Her brukes en policy som lar alle lese objekter (`s3:GetObject`).  
+
+## CLI-kommandoer brukt
+- **`aws s3 mb s3://BUCKET`**: Make bucket – oppretter en ny bucket.  
+- **`aws s3api put-public-access-block`**: Endrer BPA-flaggene (tillat offentlig tilgang).  
+- **`aws s3api put-bucket-policy --policy file://…`**: Legger på bucket-policy (offentlig lesetilgang).  
+- **`aws s3 website s3://BUCKET --index-document … --error-document …`**: Slår på static website hosting og peker på standardfiler.  
+- **`aws s3 sync website/ s3://BUCKET/ --delete`**: Laster opp filer og sletter det som ikke finnes lokalt (speiler).  
+- **`aws s3 ls s3://BUCKET/ --recursive`**: Lister alle filer i bucketen.  
+- **`aws s3 rm s3://BUCKET --recursive`**: Tømmer bucketen.  
+- **`aws s3 rb s3://BUCKET`**: Sletter selve bucketen (må være tom først).  
+
 ## Ressurser
 - [AWS S3 Documentation](https://docs.aws.amazon.com/s3/)
 - [AWS CLI S3 Commands](https://docs.aws.amazon.com/cli/latest/reference/s3/)

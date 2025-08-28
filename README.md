@@ -1,6 +1,7 @@
 # AWS S3 Static Website Hosting - Øvelse
 
 ## Mål
+
 I denne øvelsen skal du lære å:
 - Konfigurere AWS CLI i GitHub Codespaces
 - Opprette en S3 bucket

@@ -13,21 +13,7 @@ I denne oppgaven skal vi jobbe med **AWS CLI** (`aws` kommandolinje) og bli kjen
 * At du får tilgang til klassens AWS-miljø
 * At du får tilgang til AWS fra terminalen i Codespaces
 
-### CLI vs. web-konsoll
-
-Alt vi gjør i denne labben kan også gjøres via AWS sitt web-brukergrensesnitt (konsollet). CLI er raskere, mer presis og lettere å automatisere — derfor bruker vi den her. Men det er lærerikt å se de samme ressursene med egne øyne.
-
-**Utforskingsoppgave, parallelt med labben:** logg inn på web-konsollet her:
-
-👉 https://244530008913.signin.aws.amazon.com/console
-
-Bruk samme IAM-brukernavn og passord som du fikk utdelt (dette er en *bruker* med passord, ikke access keys). Etter hver del av labben, gå inn i konsollet og finn:
-
-- **Etter Del 2:** Finn S3-bucketen din under tjenesten *S3*. Klikk deg inn på den, se på **Permissions**-fanen — der ligger både *Block public access* og *Bucket policy* du satte fra CLI.
-- **Etter Del 3:** Under **Properties** → *Static website hosting* — der ser du at hostingen er skrudd på og hvilken URL bucketen har.
-- **Under Del 3:** Klikk på **Objects**-fanen og se filene du sync'et opp.
-
-Poenget er: CLI-kommandoene og musepekingen i konsollet gjør *samme sak* mot *samme API*. Når du ser koblingen mellom de to blir AWS mye mindre magisk.
+I denne labben bruker vi CLI. Helt til slutt (før opprydding) tar vi en runde i AWS web-konsollet for å se de samme ressursene der.
 
 ## Forutsetninger
 - GitHub konto med Codespaces tilgang
@@ -117,7 +103,7 @@ aws s3 mb s3://$BUCKET_NAME --region eu-north-1
 
 ### Steg 2: Konfigurer bucket policy for offentlig tilgang
 
-Opprett en fil `bucket-policy.json`, og Erstatt `BUCKET_NAME` med ditt bucket navn, 
+Opprett en fil `bucket-policy.json`, og erstatt `BUCKET_NAME` med ditt bucketnavn.
 
 ```json
 {
@@ -136,7 +122,7 @@ Opprett en fil `bucket-policy.json`, og Erstatt `BUCKET_NAME` med ditt bucket na
 
 Kjør følgende kommandoer i terminalen
 
-* Fjerner  "block public access" (nødvendig for offentlig website)
+* Fjerner "block public access" (nødvendig for offentlig website)
 
 ```bash
 aws s3api put-public-access-block \
@@ -187,7 +173,7 @@ aws s3 ls s3://$BUCKET_NAME/ --recursive
 
 ## Bonusoppgave: Deploy din egen React-app
 
-En React-app er, når den er bygget, bare statiske filer. Og statiske filer — det er S3 sitt hjemmebane. Lag noe. Deploy det. Del URL-en med en medstudent.
+En React-app er, når den er bygget, bare statiske filer — akkurat den typen filer S3 kan servere. Lag noe. Deploy det. Del URL-en med en medstudent.
 
 ### Oppgaven
 
@@ -228,9 +214,36 @@ aws s3 rb s3://$BUCKET_NAME
 - Prosjektet ditt trenger sin egen S3-bucket (samme oppskrift som over). Bruk et nytt, unikt navn.
 - Etter `npm run build` er det innholdet i `dist/` (eller `build/`, avhengig av verktøy) du skal sync'e til S3 — ikke hele prosjektmappen.
 - `--delete` på `aws s3 sync` er din venn når du deployer på nytt.
-- Husk **Opprydding** når du er ferdig, også for denne bucketen.
+- Husk å rydde opp også for denne bucketen (se **Opprydding** nedenfor).
 
-# Viktige termer – AWS S3 Static Website Hosting (Laget av AI)
+## Utforsk i AWS web-konsollet
+
+Nå som du har opprettet bucket, satt policy og lastet opp filer via CLI, er det lærerikt å se de samme ressursene i AWS sitt web-brukergrensesnitt. CLI og konsollet snakker mot samme API — de gjør samme sak.
+
+Logg inn her:
+
+https://244530008913.signin.aws.amazon.com/console
+
+Bruk IAM-brukernavn og passord du fikk utdelt (dette er en *bruker* med passord, ikke access keys).
+
+Finn:
+
+- **S3-bucketen din** under tjenesten *S3*. Klikk deg inn på den.
+- **Permissions**-fanen: her ligger både *Block public access* og *Bucket policy* du satte fra CLI.
+- **Properties** → *Static website hosting*: ser hostingen er skrudd på, samt URL-en.
+- **Objects**-fanen: filene du sync'et opp.
+
+## Opprydding
+Når du er ferdig med øvelsen — inkludert bonusoppgaven og utforsking i konsollet — slett bucketen(e) for å unngå kostnader:
+```bash
+# Tøm bucketen først
+aws s3 rm s3://$BUCKET_NAME --recursive
+
+# Slett bucketen
+aws s3 rb s3://$BUCKET_NAME
+```
+
+# Viktige termer – AWS S3 Static Website Hosting
 
 ## Grunnleggende
 - **AWS CLI**: Kommandolinje-verktøy for å kjøre AWS-kommandoer. Brukes her til å opprette bucket, sette policy og laste opp filer.  

@@ -185,16 +185,6 @@ aws s3 sync website/ s3://$BUCKET_NAME/ --delete
 aws s3 ls s3://$BUCKET_NAME/ --recursive
 ```
 
-## Opprydding
-Når du er ferdig med øvelsen, slett bucketen for å unngå kostnader:
-```bash
-# Tøm bucketen først
-aws s3 rm s3://$BUCKET_NAME --recursive
-
-# Slett bucketen
-aws s3 rb s3://$BUCKET_NAME
-```
-
 ## Bonusoppgave: Deploy din egen React-app
 
 En React-app er, når den er bygget, bare statiske filer. Og statiske filer — det er S3 sitt hjemmebane. Lag noe. Deploy det. Del URL-en med en medstudent.
@@ -221,6 +211,17 @@ Hvordan du setter opp React-prosjektet er opp til deg. Google, ChatGPT, dokument
 - Din egen versjon av noe helt annet. Overrask deg selv.
 
 Bygg noe *du* synes er morsomt. Ingen skal karakter-vurdere ideen — vi vurderer at du fikk den ut på nettet.
+
+## Opprydding
+
+Når du er ferdig med øvelsen, slett bucketen for å unngå kostnader:
+```bash
+# Tøm bucketen først
+aws s3 rm s3://$BUCKET_NAME --recursive
+
+# Slett bucketen
+aws s3 rb s3://$BUCKET_NAME
+```
 
 ### Ting å tenke på
 
